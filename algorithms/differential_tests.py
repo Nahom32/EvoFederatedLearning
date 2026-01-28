@@ -18,9 +18,6 @@ def rastrigin_function(x):
     return 10 * len(x) + np.sum(x**2 - 10 * np.cos(2 * np.pi * x))
 
 
-# --- Runner ---
-
-
 def run_tests():
     print("🧪 Running Independent Differential Evolution Tests...\n")
 
@@ -32,7 +29,7 @@ def run_tests():
     )
     print(f"Result: {best_val:.6f} (Expected ~0.0)")
     assert best_val < 1e-3, "Failed to optimize Sphere function!"
-    print("✅ Passed\n")
+    print("Passed\n")
 
     # TEST 2: Rosenbrock Function (2 Dimensions)
     print("--- Test 2: Rosenbrock Function (2D) ---")
@@ -42,7 +39,7 @@ def run_tests():
     )
     print(f"Result: {best_val:.6f} at {best_sol} (Expected 0.0 at [1. 1.])")
     assert best_val < 1e-2, "Failed to optimize Rosenbrock function!"
-    print("✅ Passed\n")
+    print("Passed\n")
 
     # TEST 3: Rastrigin Function (5 Dimensions - Hard!)
     print("--- Test 3: Rastrigin Function (5D) ---")
@@ -52,7 +49,7 @@ def run_tests():
     )
     print(f"Result: {best_val:.6f} (Expected ~0.0)")
     assert best_val < 1e-1, "Failed to optimize Rastrigin function!"
-    print("✅ Passed\n")
+    print("Passed\n")
 
 
 if __name__ == "__main__":

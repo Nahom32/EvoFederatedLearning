@@ -1,5 +1,5 @@
 import numpy as np
-from simulated_annealing import simulated_annealing
+from genetic_algorithm import genetic_algorithm
 
 
 def sphere_function(x):
@@ -13,7 +13,7 @@ def rosenbrock_function(x):
 
 
 def rastrigin_function(x):
-    """Multimodal function (many local optima). Min at 0."""
+    """Multimodal function. Min at 0."""
     return 10 * len(x) + np.sum(x**2 - 10 * np.cos(2 * np.pi * x))
 
 
@@ -21,57 +21,55 @@ def rastrigin_function(x):
 
 
 def run_tests():
-    print("Running Independent Simulated Annealing Tests...\n")
+    print("🧬 Running Independent Genetic Algorithm Tests...\n")
 
     # TEST 1: Sphere Function (5 Dimensions)
-    # Easy convex problem.
     print("--- Test 1: Sphere Function (5D) ---")
     bounds = [(-5.0, 5.0)] * 5
-    best_sol, best_val, _ = simulated_annealing(
+    best_sol, best_val, _ = genetic_algorithm(
         sphere_function,
         bounds,
-        max_iter=5000,
-        initial_temp=10.0,
-        cooling_rate=0.99,
-        step_size=0.1,
+        pop_size=50,
+        num_generations=200,
+        mutation_rate=0.2,
+        mutation_scale=0.1,
     )
     print(f"Result: {best_val:.6f} (Expected ~0.0)")
-    assert best_val < 1e-2, "Failed to optimize Sphere function!"
-    print(" Passed\n")
+    assert best_val < 0.1, "Failed to optimize Sphere function!"
+    print("✅ Passed\n")
 
     # TEST 2: Rosenbrock Function (2 Dimensions)
-    # Harder valley. We increase iterations and tweak step size.
+    # Harder valley. GA needs more generations or larger population.
     print("--- Test 2: Rosenbrock Function (2D) ---")
     bounds = [(-2.0, 2.0)] * 2
-    best_sol, best_val, _ = simulated_annealing(
+    best_sol, best_val, _ = genetic_algorithm(
         rosenbrock_function,
         bounds,
-        max_iter=5000,
-        initial_temp=100.0,
-        cooling_rate=0.99,
-        step_size=0.1,
+        pop_size=100,
+        num_generations=500,
+        mutation_rate=0.3,
+        mutation_scale=0.2,  # Higher mutation helps escape local optima
     )
     print(f"Result: {best_val:.6f} at {best_sol} (Expected 0.0 at [1. 1.])")
-    assert best_val < 1e-1, "Failed to optimize Rosenbrock function!"
-    print(" Passed\n")
+    assert best_val < 0.5, "Failed to optimize Rosenbrock function!"
+    print("✅ Passed\n")
 
     # TEST 3: Rastrigin Function (5 Dimensions)
-    # Very hard. Requires high initial temp to jump out of local pits.
+    # Very hard. GA is good at this if diversity is maintained.
     print("--- Test 3: Rastrigin Function (5D) ---")
     bounds = [(-5.12, 5.12)] * 5
-    best_sol, best_val, _ = simulated_annealing(
+    best_sol, best_val, _ = genetic_algorithm(
         rastrigin_function,
         bounds,
-        max_iter=100000,
-        initial_temp=70.0,
-        cooling_rate=0.992,
-        step_size=0.95,
+        pop_size=200,
+        num_generations=500,
+        mutation_rate=0.1,
+        mutation_scale=0.5,  # Larger steps needed to jump peaks
     )
     print(f"Result: {best_val:.6f} (Expected ~0.0)")
-    # SA can struggle with high-dim multimodal functions without fine-tuning.
-    # We use a relaxed assertion here.
+    # GA might find a near-optimal solution (e.g., 0.99) instead of perfect 0.0
     assert best_val < 2.0, "Failed to optimize Rastrigin function!"
-    print(" Passed\n")
+    print("✅ Passed\n")
 
 
 if __name__ == "__main__":
