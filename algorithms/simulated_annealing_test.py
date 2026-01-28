@@ -37,7 +37,7 @@ def run_tests():
     )
     print(f"Result: {best_val:.6f} (Expected ~0.0)")
     assert best_val < 1e-2, "Failed to optimize Sphere function!"
-    print("✅ Passed\n")
+    print(" Passed\n")
 
     # TEST 2: Rosenbrock Function (2 Dimensions)
     # Harder valley. We increase iterations and tweak step size.
@@ -53,7 +53,7 @@ def run_tests():
     )
     print(f"Result: {best_val:.6f} at {best_sol} (Expected 0.0 at [1. 1.])")
     assert best_val < 1e-1, "Failed to optimize Rosenbrock function!"
-    print("✅ Passed\n")
+    print(" Passed\n")
 
     # TEST 3: Rastrigin Function (5 Dimensions)
     # Very hard. Requires high initial temp to jump out of local pits.
@@ -71,7 +71,7 @@ def run_tests():
     # SA can struggle with high-dim multimodal functions without fine-tuning.
     # We use a relaxed assertion here.
     assert best_val < 2.0, "Failed to optimize Rastrigin function!"
-    print("✅ Passed\n")
+    print(" Passed\n")
 
 
 if __name__ == "__main__":
