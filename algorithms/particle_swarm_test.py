@@ -33,7 +33,7 @@ def run_tests():
     )
     print(f"Result: {best_val:.6f} (Expected ~0.0)")
     assert best_val < 1e-3, "Failed to optimize Sphere function!"
-    print("✅ Passed\n")
+    print(" Passed\n")
 
     # TEST 2: Rosenbrock Function (2 Dimensions)
     # A curved valley. Particles often struggle to find the exact bottom.
@@ -44,7 +44,7 @@ def run_tests():
     )
     print(f"Result: {best_val:.6f} at {best_sol} (Expected 0.0 at [1. 1.])")
     assert best_val < 1e-2, "Failed to optimize Rosenbrock function!"
-    print("✅ Passed\n")
+    print(" Passed\n")
 
     # TEST 3: Rastrigin Function (5 Dimensions - Hard!)
     # Many holes (local minima). Particles must have enough velocity to jump out of them.
@@ -61,7 +61,7 @@ def run_tests():
     # Note: PSO sometimes gets stuck in local optima for Rastrigin if params aren't tuned perfect.
     # We use a looser assertion here compared to DE.
     assert best_val < 1.0, "Failed to optimize Rastrigin function!"
-    print("✅ Passed\n")
+    print(" Passed\n")
 
 
 if __name__ == "__main__":
