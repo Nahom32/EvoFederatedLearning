@@ -19,7 +19,7 @@ def rastrigin_function(x):
 
 
 def run_tests():
-    print("🧪 Running Independent Differential Evolution Tests...\n")
+    print("Running Independent Differential Evolution Tests...\n")
 
     # TEST 1: Sphere Function (5 Dimensions)
     print("--- Test 1: Sphere Function (5D) ---")
