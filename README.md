@@ -1,7 +1,5 @@
 # EvoFederatedLearning
 
-This repository contains the code for the paper "EvoFederatedLearning: A Novel Approach to Federated Learning using Evolutionary Algorithms".
-
 ## Abstract
 
 Federated Learning (FL) is a distributed machine learning paradigm that enables model training on decentralized data without compromising data privacy. However, FL faces challenges such as communication overhead, statistical heterogeneity, and client drift. To address these challenges, we propose EvoFederatedLearning, a novel approach that leverages evolutionary algorithms to optimize the client selection process in FL. We implement and evaluate four different evolutionary algorithms: Genetic Algorithm (GA), Particle Swarm Optimization (PSO), Differential Evolution (DE), and Simulated Annealing (SA). Our experiments on the MNIST dataset show that EvoFederatedLearning significantly improves the convergence speed and final accuracy of the global model compared to the standard FedAvg algorithm.
